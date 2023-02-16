@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_15_203101) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_16_183730) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "clothes", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.string "condition"
@@ -24,17 +24,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_203101) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_clothes_on_user_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "rentals", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
     t.bigint "user_id", null: false
-    t.bigint "clothe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["clothe_id"], name: "index_rentals_on_clothe_id"
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_rentals_on_item_id"
     t.index ["user_id"], name: "index_rentals_on_user_id"
   end
 
@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_203101) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "clothes", "users"
-  add_foreign_key "rentals", "clothes"
+  add_foreign_key "items", "users"
   add_foreign_key "rentals", "users"
 end

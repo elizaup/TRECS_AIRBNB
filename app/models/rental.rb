@@ -1,4 +1,4 @@
 class Rental < ApplicationRecord
   belongs_to :user
-  belongs_to :clothe
+  belongs_to :item
 end
