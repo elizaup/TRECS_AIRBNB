@@ -5,3 +5,42 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+require 'faker'
+
+# 50 fake items:
+puts 'Creating 50 fake items...'
+50.times do
+  Item.create!(
+    name: Faker::Commerce.product_name,
+    price: Faker::Commerce.price,
+    condition: Faker::Commerce.material,
+    category: Faker::Commerce.department,
+    brand: Faker::Commerce.brand,
+    available: Faker::Boolean.boolean,
+  )
+end
+puts 'Finished!'
+
+# 20 fake users:
+puts 'Creating 20 fake users...'
+20.times do
+  User.create!(
+    username: Faker::Internet.username,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.safe_email,
+    address: Faker::Address.street_address,
+  )
+end
+puts 'Finished!'
+
+# 5 fake rentals:
+puts 'Creating 5 fake rentals...'
+5.times do
+  Rental.create!(
+    start_date: Faker::Date.in_date_period(month: 1),
+    end_date: Faker::Date.in_date_period(month: 2),
+  )
+end
+puts 'Finished!'
