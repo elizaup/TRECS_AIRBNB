@@ -9,7 +9,7 @@
 require 'faker'
 
 # 20 fake users:
-puts 'Creating 20 fake users...'
+puts 'Creating fake users and items...'
 20.times do
   user = User.create!(
     username: Faker::Internet.username,
@@ -33,14 +33,14 @@ puts 'Creating 20 fake users...'
 end
 puts 'Finished!'
 
-# # 5 fake rentals:
-# puts 'Creating 5 fake rentals...'
-# 5.times do
-#   Rental.create!(
-#     start_date: Faker::Date.in_date_period(month: 1),
-#     end_date: Faker::Date.in_date_period(month: 2),
-# TODO user id
-# TODO item id
-#   )
-# end
-# puts 'Finished!'
+# 5 fake rentals:
+puts 'Creating 5 fake rentals...'
+5.times do
+  Rental.create!(
+    start_date: Faker::Date.in_date_period(month: 1),
+    end_date: Faker::Date.in_date_period(month: 2),
+    # TODO user id
+    # TODO item id
+  )
+end
+puts 'Finished!'
