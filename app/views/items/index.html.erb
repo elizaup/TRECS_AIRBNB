@@ -1,0 +1,39 @@
+<h1>Welcome!</h1>
+<div class="container">
+  <% @items.each do |item| %>
+	  <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= item["name"]%> </h5>
+        <ul>
+          <li>
+	          <p class="card-text"><%= item["price"]%></p>
+          </li>
+          <li>
+	          <p class="card-text"><%= item["category"]%></p>
+          </li>
+          <li>
+            <p class="card-text"><%= item["brand"]%></p>
+          </li>
+        </ul>
+        <a href="#" class="btn btn-primary">See more</a>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+- Display price in this way: £ 3.50
+- Display only items that are available?
+    @items[available]
+    @items[available]== true
+- omitting condition because the seed data has weird conditions
+>

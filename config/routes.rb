@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  get 'items/new'
   devise_for :users
   # Homepage where you can see all clothes
-  root to: "pages#home"
+  root "items#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
 
-  # Show / Items
-  get "items/:id", to: "items#show", as: :item
-
   # New / Items
   get "items/new", to: "items#new", as: :new_item
   post "items", to: "items#create"
+
+  # Show / Items
+  get "items/:id", to: "items#show", as: :item
+
 
   # Edit / Items
   get "items/:id/edit", to: "items#show", as: :edit_item
