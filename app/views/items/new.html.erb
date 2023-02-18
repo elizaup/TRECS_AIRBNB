@@ -1,0 +1,19 @@
+<h1>List an item </h1>
+<p>Find me in app/views/items/new.html.erb</p>
+
+<%= simple_form_for(@item) do |i| %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :category %>
+  <%= f.input :brand %>
+  <%= f.input :condition %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+
+<!--
+how to ask for photo input? does it need to be a column in the db
+<%= f.input :picture_url %>
+Simple form needs 2 objects to build the right request
+Is it?
+<%= simple_form_for(@item, @user) do |i| %>
+>
