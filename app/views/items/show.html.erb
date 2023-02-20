@@ -11,8 +11,12 @@
 
 <div class="rental inquiry">
   <h2> Submit a Rental Inquiry <h2>
-  <form>
-  </form>
+  <%= simple_form_for(@rental) do |i| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :price %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
 </div>
 
 <!-- # LINK USER PROFILE -->
