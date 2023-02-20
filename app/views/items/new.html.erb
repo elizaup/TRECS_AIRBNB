@@ -1,19 +1,64 @@
 <h1>List an item </h1>
-<p>Find me in app/views/items/new.html.erb</p>
 
-<%= simple_form_for(@item) do |i| %>
-  <%= f.input :name %>
-  <%= f.input :price %>
-  <%= f.input :category %>
-  <%= f.input :brand %>
-  <%= f.input :condition %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<form>
+  <fieldset>
 
-<!--
-how to ask for photo input? does it need to be a column in the db
-<%= f.input :picture_url %>
-Simple form needs 2 objects to build the right request
-Is it?
-<%= simple_form_for(@item, @user) do |i| %>
->
+<div class="mb-3">
+  <label for="formGroupExampleInput2" class="form-label">Item Title</label>
+  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="eg.: Cozy White Jumper">
+</div>
+
+<div class="mb-3">
+  <label for="formGroupExampleInput" class="form-label">Describe your item</label>
+  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="eg.: only worn a few times, true to size">
+</div>
+
+<div>
+  <label for="formGroupExampleInput3" class="form-label">Category</label>
+    <div class="form-floating">
+      <select class="form-select" id="floatingSelect" style="color:grey">
+        <option selected></option>
+        <option value="1">Jumpers & Sweaters</option>
+        <option value="2">Dresses</option>
+        <option value="3">Skirts</option>
+        <option value="4">Tops & T-shirts</option>
+        <option value="5">Trousers</option>
+        <option value="6">Active wear</option>
+        <option value="7">Bags</option>
+        <option value="8">Shoes</option>
+        <option value="9">Accessories</option>
+      </select>
+  <label for="floatingSelect">Select Category</label>
+    </div>
+</div>
+
+<div class="mb-3">
+  <label for="formGroupExampleInput2" class="form-label">Brand</label>
+  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="eg.: Nike, Guess">
+</div>
+
+<div class="row">
+  <div class="col">
+    <label for="floatingSelect">Price</label>
+    <input type="text" class="form-control" placeholder="€0.00" aria-label="Price">
+  </div>
+  <div class="col">
+    <label for="floatingSelect">Conditions</label>
+    <div class="form-floating">
+      <select class="form-select" id="floatingSelect" style="color:grey">
+        <option selected></option>
+        <option value="1">New with tags</option>
+        <option value="2">New without tags</option>
+        <option value="3">Used - Very good</option>
+        <option value="4">Used - Good</option>
+        <option value="5">Used - Decent</option>
+        <option value="6">Used - Bad</option>
+      </select>
+  <label for="floatingSelect">Select Category</label>
+    </div>
+  </div>
+</div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
