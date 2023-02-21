@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
 
   def show
     # @task = Task.find(params[:id]) -> refactored and added to set_item
+    @rental = Rental.new
   end
 
   def new
@@ -45,6 +46,6 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 end
