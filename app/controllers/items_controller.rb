@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
     # @item = Item.find(params[:id]) -> refactored and added to set_item
     # raise
     @item.update(item_params)
-    edirect_to item_path(@item)
+    redirect_to item_path(@item)
     # else
     # render "edit" #will go back / stay on the same page
   end
@@ -42,7 +42,8 @@ class ItemsController < ApplicationController
   private
 
   def item_parms
-    params.require(:item).permit(:name, :price, :condition, :category, :brand, :available)
+    params.require(:item).permit(:name, :price, :condition, :category, :brand, :available, photos: [])
+
   end
 
   def set_item
