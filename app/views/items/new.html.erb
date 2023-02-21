@@ -1,7 +1,6 @@
 <h1>List an item </h1>
 
-<form>
-  <fieldset>
+<%= simple_form_for @item do |f| %>
 
 <div class="web_ui__Card__card">
   <div data-testid="media-select" id="photos">
@@ -12,67 +11,35 @@
         </h3>&nbsp;
       </span>
     </div>
-  <input data-testid="add-photos-input" name="photos" class="u-hidden" type="file" accept="image/*" multiple="">
+  <%= f.input :photos, class:"u-hidden", accept:"image/*", multiple:""%>
     <div class="web_ui__Label__label web_ui__Label__wide web_ui__Label__leading">
   </div>
 </div>
 
 <div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Item Title</label>
-  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="eg.: Cozy White Jumper">
-</div>
-
-<div class="mb-3">
-  <label for="formGroupExampleInput" class="form-label">Describe your item</label>
-  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="eg.: only worn a few times, true to size">
+    <%= f.input :name, class:"form-control", placeholder:"eg.: Cozy White Jumper", label:"Item Title" %>
 </div>
 
 <div>
-  <label for="formGroupExampleInput3" class="form-label">Category</label>
     <div class="form-floating">
-      <select class="form-select" id="floatingSelect" style="color:grey">
-        <option selected></option>
-        <option value="1">Jumpers & Sweaters</option>
-        <option value="2">Dresses</option>
-        <option value="3">Skirts</option>
-        <option value="4">Tops & T-shirts</option>
-        <option value="5">Trousers</option>
-        <option value="6">Active wear</option>
-        <option value="7">Bags</option>
-        <option value="8">Shoes</option>
-        <option value="9">Accessories</option>
-      </select>
-  <label for="floatingSelect">Select Category</label>
+     <%= f.input :category, collection: ["Jumper & Sweaters", "Dresses", "Skirts", "Tops & T-shirts", "Trousers", "Active wear", "Bags", "Shoes", "Accessories"], class:"form-select", label:"Category" %>
     </div>
 </div>
 
 <div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Brand</label>
-  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="eg.: Nike, Guess">
+      <%= f.input :brand, class:"form-control", placeholder:"eg.: Nike, Guess", label:"Brand" %>
 </div>
 
 <div class="row">
   <div class="col">
-    <label for="floatingSelect">Price</label>
-    <input type="text" class="form-control" placeholder="€0.00" aria-label="Price">
+    <%= f.input :price, class:"form-control", placeholder:"€0.00", label:"Price" %>
   </div>
   <div class="col">
-    <label for="floatingSelect">Conditions</label>
     <div class="form-floating">
-      <select class="form-select" id="floatingSelect" style="color:grey">
-        <option selected></option>
-        <option value="1">New with tags</option>
-        <option value="2">New without tags</option>
-        <option value="3">Used - Very good</option>
-        <option value="4">Used - Good</option>
-        <option value="5">Used - Decent</option>
-        <option value="6">Used - Bad</option>
-      </select>
-  <label for="floatingSelect">Select Category</label>
+      <%= f.input :condition, collection: ["New with tags", "New without tags", "Used - Very good", "Used - Good", "Used - Decent", "Used - Bad"], class:"form-select", label:"Conditions"%>
     </div>
   </div>
 </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </fieldset>
-</form>
+  <%= f.button :submit, class:"btn btn-primary"%>
+<% end %>

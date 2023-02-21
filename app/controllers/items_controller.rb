@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save
-    redirect_to item_path(@item)
+    redirect_to items_path(@item)
   end
 
   def destroy
@@ -33,14 +33,14 @@ class ItemsController < ApplicationController
     # @item = Item.find(params[:id]) -> refactored and added to set_item
     # raise
     @item.update(item_params)
-    redirect_to item_path(@item)
+    redirect_to items_path(@item)
     # else
     # render "edit" #will go back / stay on the same page
   end
 
   private
 
-  def item_parms
+  def item_params
     params.require(:item).permit(:name, :price, :condition, :category, :brand, :available, photos: [])
 
   end
