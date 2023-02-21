@@ -9,7 +9,7 @@
 require 'faker'
 
 # 20 fake users:
-puts 'Creating 20 fake users...'
+puts 'Creating 20 fake users....'
 20.times do
   user = User.create!(
     username: Faker::Internet.username,
