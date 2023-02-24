@@ -2,8 +2,8 @@ class RentalsController < ApplicationController
   before_action :find_rental, only: [ :confirmation, :request, :show ]
   before_action :find_item, only: [ :confirmation, :request ]
 
-  def show
-
+  def new
+    @rental = Rental.new
   end
 
   def create
@@ -16,10 +16,6 @@ class RentalsController < ApplicationController
     else
       render 'request', status: :unprocessable_entity
     end
-  end
-
-
-  def rental_request
   end
 
   def confirmation
