@@ -48,3 +48,18 @@
       <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
     </div>
 </div>
+
+<!-- # LINK TO RENTAL FORM -->
+<div class="mx-auto" style="width: 200px;">
+  <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
+</div>
+
+<!-- # LINK TO HOME -->
+<div class="mx-auto" style="width: 200px;">
+  <%= link_to "Home Page", root_path(@item), class: "btn btn-outline-primary" %>
+</div>
+
+<%# <i class="fa-solid fa-trash"></i>
+<%= link_to @project.external_link do %>
+  <%# <i class="fa fa-link"></i>
+<% end %>
