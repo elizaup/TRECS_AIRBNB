@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_item, only: [:show, :destroy, :edit, :update]
 
   def index
@@ -7,6 +8,7 @@ class ItemsController < ApplicationController
 
   def show
     # @task = Task.find(params[:id]) -> refactored and added to set_item
+    @rental = Rental.new
   end
 
   def new
@@ -22,7 +24,7 @@ class ItemsController < ApplicationController
   def destroy
     # @task = Task.find(params[:id]) -> refactored and added to set_item
     @item.destroy
-    redirect_to items_path # status: :see_other
+    redirect_to root_path # status: :see_other
   end
 
   def edit
@@ -33,7 +35,7 @@ class ItemsController < ApplicationController
     # @item = Item.find(params[:id]) -> refactored and added to set_item
     # raise
     @item.update(item_params)
-    edirect_to item_path(@item)
+    redirect_to item_path(@item)
     # else
     # render "edit" #will go back / stay on the same page
   end
@@ -41,7 +43,8 @@ class ItemsController < ApplicationController
   private
 
   def item_parms
-    params.require(:item).permit(:name, :price, :condition, :category, :brand, :available)
+    params.require(:item).permit(:name, :price, :condition, :category, :brand, :available, photos: [])
+
   end
 
   def set_item
