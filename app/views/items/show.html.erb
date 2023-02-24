@@ -4,15 +4,17 @@
   <h2><%= @item.name %></h2>
   <!-- IMAGES -->
   <p><%= @item.price %></p>
-  <p><%= @item.category %></p>git
+  <p><%= @item.category %></p>
   <p><%= @item.brand %></p>
   <p><%= @item.available %></p>
 </div>
 
+
+<% if policy(@item).destroy? %>
 <div>
 <%= link_to "Remove", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
 </div>
-
+<% end %>
 
 <!-- # FORM FOR RENTAL -->
 <div class="rental inquiry">
