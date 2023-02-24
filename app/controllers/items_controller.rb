@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_item, only: [:show, :destroy, :edit, :update]
 
   def index
@@ -23,7 +24,7 @@ class ItemsController < ApplicationController
   def destroy
     # @task = Task.find(params[:id]) -> refactored and added to set_item
     @item.destroy
-    redirect_to items_path # status: :see_other
+    redirect_to root_path # status: :see_other
   end
 
   def edit
