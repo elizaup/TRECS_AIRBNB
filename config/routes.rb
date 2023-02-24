@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"\
+
   resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :rentals, only: [:create]
   end
@@ -27,7 +28,8 @@ Rails.application.routes.draw do
   # Profile
   # get "/profile", to: "profile#show"
 
-  # Rental "checkout"
-  # get "/items/rental/new", to: "rental#new"
-  # post "items/rental", to: "rental#create"
+  # New / Rental (Request)
+  # get "rentals/new", to: "rentals#new"
+  # post "rentals/new", to: "rentals#create"
+
 end
