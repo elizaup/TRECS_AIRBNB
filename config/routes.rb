@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   # Profile
   # get "/profile", to: "profile#show"
 
-  # Rental "checkout"
-  # get "/items/rental/new", to: "rental#new"
-  # post "items/rental", to: "rental#create"
+  # New / Rental (Request)
+  get "rentals/new", to: "rentals#new"
+  post "rentals/new", to: "rentals#create" #I have no idea if this is right!
+
 end
