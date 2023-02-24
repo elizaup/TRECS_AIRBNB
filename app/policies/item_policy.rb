@@ -23,12 +23,14 @@ class ItemPolicy < ApplicationPolicy
     return record.user == user
   end
 
-  # def edit?
-  #   return update?
-  # end
+  def edit?
+   return update?
+    # return true
+  end
 
-  # def update?
+  def update?
   #   # only the person that created the listing
-  #   return record.user == user
-  # end
+     return record.user == user
+   # return true
+  end
 end

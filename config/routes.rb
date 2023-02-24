@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"\
-  resources :items, only: [:new, :create, :show, :update, :destroy] do
+  resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :rentals, only: [:create]
   end
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # get "items/:id", to: "items#show", as: :item
 
   # Edit / Items
-  get "items/:id/edit", to: "items#show", as: :edit_item
+  # get "items/:id/edit", to: "items#edit", as: :edit_item
   # patch "items/:id", to: "items#update"
 
   # Destroy / Items
