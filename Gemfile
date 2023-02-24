@@ -31,6 +31,9 @@ gem "jbuilder"
 # Devise
 gem "devise"
 
+# Pundit
+gem "pundit"
+
 # Faker
 gem "faker"
 
