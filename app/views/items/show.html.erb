@@ -1,24 +1,35 @@
-<h1>Welcome!</h1>
+<h1> <%= @item.name %></h1>
 
 <div class="container">
   <h2><%= @item.name %></h2>
   <!-- IMAGES -->
   <p><%= @item.price %></p>
-  <p><%= @item.category %></p>
+  <p><%= @item.category %></p>git
   <p><%= @item.brand %></p>
   <p><%= @item.available %></p>
 </div>
 
+<div>
+<%= link_to "Remove", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+</div>
+
+
+<!-- # FORM FOR RENTAL -->
 <div class="rental inquiry">
   <h2> Submit a Rental Inquiry <h2>
-  <%= simple_form_for(@rental) do |i| %>
+  <%= simple_form_for [@item, @rental] do |f| %>
     <%= f.input :start_date %>
     <%= f.input :end_date %>
-    <%= f.input :price %>
+    <%# f.input :price %>
     <%= f.submit class: "btn btn-primary" %>
   <% end %>
 </div>
 
 <!-- # LINK USER PROFILE -->
 <!-- # LINK TO HOME -->
-<!-- # FORM FOR RENTAL -->
+<!-- # LINK TO DELETE -->
+<%# <i class="fa-solid fa-trash"></i>
+<%= link_to @project.external_link do %>
+  <%# <i class="fa fa-link"></i>
+<% end %>
+<!-- # LINK TO EDIT -->
