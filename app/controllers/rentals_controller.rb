@@ -10,7 +10,6 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    authorize @rental
     @rental.item = Item.find(params[:item_id])
     @rental.user = current_user
     if @rental.save!
@@ -39,6 +38,6 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:rental).permit(:start_date, :end_date, :confirmed, :user_id, :item_id)
+    params.require(:rental).permit(:start_date, :end_date, :user_id, :item_id)
   end
 end
