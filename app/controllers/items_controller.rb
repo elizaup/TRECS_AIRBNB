@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
 
   def show
     # @task = Task.find(params[:id]) -> refactored and added to set_item
+    @rental = Rental.new
   end
 
   def new
@@ -15,8 +16,12 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to items_path(@item)
+    @item.user = current_user
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy

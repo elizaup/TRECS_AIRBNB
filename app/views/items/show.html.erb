@@ -1,3 +1,24 @@
-<% @item.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
+<h1>Welcome!</h1>
+
+<div class="container">
+  <h2><%= @item.name %></h2>
+  <!-- IMAGES -->
+  <p><%= @item.price %></p>
+  <p><%= @item.category %></p>git
+  <p><%= @item.brand %></p>
+  <p><%= @item.available %></p>
+</div>
+
+<div class="rental inquiry">
+  <h2> Submit a Rental Inquiry <h2>
+  <%= simple_form_for [@item, @rental] do |f| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%# f.input :price %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<!-- # LINK USER PROFILE -->
+<!-- # LINK TO HOME -->
+<!-- # FORM FOR RENTAL -->

@@ -41,5 +41,12 @@
   </div>
 </div>
 
+ <div class="col-12">
+    <div class="form-check">
+
+      <%= f.input :available, as: :boolean, checked_value: 'available', unchecked_value: 'not available', class: "form-check-input" %>
+    </div>
+  </div>
+
   <%= f.button :submit, class:"btn btn-primary"%>
 <% end %>
