@@ -1,0 +1,22 @@
+<h1>Rental Request Form</h1>
+
+<!-- # FORM FOR RENTAL -->
+<div class="container mt-3">
+  <div class="mx-auto" style="width: 400px;">
+    <h2> Submit a Rental Inquiry <h2>
+  </div>
+  <%= simple_form_for [@item, @rental] do |f| %>
+    <div class="form-inputs">
+      <%= f.input :start_date %>
+      <%= f.input :end_date %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, class:"btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<!-- # LINK TO HOME -->
+<div class="mx-auto" style="width: 200px;">
+  <%= link_to "Home Page", root_path(@item), class: "btn btn-outline-primary" %>
+</div>
