@@ -37,11 +37,11 @@ class ItemsController < ApplicationController
 
   def edit
     # @item = Item.find(params[:id]) -> refactored and added to set_item
-    # authorize @item
+    authorize @item
   end
 
   def update
-    # authorize @item
+    authorize @item
     # @item = Item.find(params[:id]) -> refactored and added to set_item
     # raise
     @item.update(item_params)
