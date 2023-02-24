@@ -29,6 +29,6 @@ Rails.application.routes.draw do
 
   # New / Rental (Request)
   get "rentals/new", to: "rentals#new"
-  post "rentals/new", to: "rentals#create" #I have no idea if this is right!
+  post "rentals/new", to: "rentals#create" #?? ask TA
 
 end

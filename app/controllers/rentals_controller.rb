@@ -3,6 +3,7 @@ class RentalsController < ApplicationController
   before_action :find_item, only: [ :confirmation, :request ]
 
   def show
+
   end
 
   def create
