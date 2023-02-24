@@ -1,37 +1,50 @@
-<h1>Welcome!</h1>
-
-<div class="container">
-  <h2><%= @item.name %></h2>
-  <!-- IMAGES -->
-  <p><%= @item.price %></p>
-  <p><%= @item.category %></p>
-  <p><%= @item.brand %></p>
-  <p><%= @item.available %></p>
+<div class="container mt-2"> <%# Page title container %>
+  <div class="row"> <%# Row 1 of 2 %>
+    <div class="container"> <%# h1 to take up half page %>
+      <h1><%= @item.name %></h1>
+    </div>
+  </div>
+  <div class="container"> <%# Row 2 of 2 %>
+    <h3>
+     <%= link_to "User Profile", @user, class: "btn btn-outline-primary" %>
+    </h3>
+  </div>
 </div>
 
+<div class="container mt-3">
+    <!-- IMAGE -->
+    <%= image_tag "#{rand(1..6)}.jpg", class: "rounded float-left" %>
+    <!-- DETAILS -->
+    <ul>
+    <br>
+      <li>
+        <p class="card-text">
+          <% if @item.available == true %>
+            <%= "AVAILABLE" %>
+          <% end %>
+          <% if @item.available == false %>
+            <%= "UNAVAILABLE" %>
+          <% end %>
+        </p>
+      </li>
+      <li>
+        <p class="card-text">Price: €<%= @item.price %></p>
+      </li>
+      <li>
+        <p class="card-text">Category: <%= @item.category %></p>
+      </li>
+      <li>
+        <p class="card-text">Brand: <%= @item.brand %></p>
+      </li>
+    </ul>
 
-<% if policy(@item).destroy? %>
-<div>
-<%= link_to "Remove", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+    <!-- LINK TO EDIT LISTING-->
+    <div>
+     <%= link_to "Edit Listing", item_path(@item), data: { turbo_method: :edit}, class: "ms-3 text-muted" %>
+    </div>
+
+    <!-- LINK TO DELETE LISTING -->
+    <div>
+      <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+    </div>
 </div>
-<% end %>
-
-<!-- # FORM FOR RENTAL -->
-<div class="rental inquiry">
-  <h2> Submit a Rental Inquiry <h2>
-  <%= simple_form_for [@item, @rental] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%# f.input :price %>
-    <%= f.submit class: "btn btn-primary" %>
-  <% end %>
-</div>
-
-<!-- # LINK USER PROFILE -->
-<!-- # LINK TO HOME -->
-<!-- # LINK TO DELETE -->
-<%# <i class="fa-solid fa-trash"></i>
-<%= link_to @project.external_link do %>
-  <%# <i class="fa fa-link"></i>
-<% end %>
-<!-- # LINK TO EDIT -->
