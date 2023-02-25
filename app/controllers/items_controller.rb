@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
     # @item = Item.find(params[:id]) -> refactored and added to set_item
     # raise
     @item.update(item_params)
-    redirect_to items_path(@item)
+    redirect_to item_path(@item)
     # else
     # render "edit" #will go back / stay on the same page
   end

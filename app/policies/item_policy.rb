@@ -19,7 +19,7 @@ class ItemPolicy < ApplicationPolicy
   end
 
   def destroy?
-    # only the person that created the listing
+  # only the person that created the listing
     return record.user == user
   end
 
@@ -29,8 +29,8 @@ class ItemPolicy < ApplicationPolicy
   end
 
   def update?
-  #   # only the person that created the listing
-     return record.user == user
-   # return true
+  # only the person that created the listing
+    return record.user == user
+  #  return true
   end
 end
