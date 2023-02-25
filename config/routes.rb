@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # root "articles#index"\
 
   resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :rentals, only: [:create]
+    resources :rentals, only: [:new, :create]
   end
 
   # New / Items
