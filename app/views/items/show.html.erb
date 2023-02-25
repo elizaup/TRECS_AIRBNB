@@ -1,93 +1,67 @@
-<h1>Welcome!</h1>
-
 <div class="container">
-  <h2><%= @item.name %></h2>
-  <!-- IMAGES -->
-  <p><%= @item.price %></p>
-  <p><%= @item.category %></p>git
-  <p><%= @item.brand %></p>
-  <p><%= @item.available %></p>
-</div>
-
-<div class="rental inquiry">
-  <h2> Submit a Rental Inquiry <h2>
-  <%= simple_form_for [@item, @rental] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%# f.input :price %>
-    <%= f.submit class: "btn btn-primary" %>
-  <% end %>
-</div>
-
-<!-- # LINK USER PROFILE -->
-<!-- # LINK TO HOME -->
-<!-- # FORM FOR RENTAL -->
-
-<div class="container mt-2"> <%# Page title container %>
-  <div class="row"> <%# Row 1 of 2 %>
-    <div class="container"> <%# h1 to take up half page %>
+  <div class="row">
+    <div class="col-sm"> <!-- PAGE (ITEM) TITLE -->
       <h1><%= @item.name %></h1>
     </div>
-  </div>
-  <div class="container"> <%# Row 2 of 2 %>
-    <h3>
-     <%= link_to "User Profile", @user, class: "btn btn-outline-primary" %>
-    </h3>
+    <div class="col-sm" > <!-- USER PROFILE LINK -->
+      <h3><%= link_to "User Profile", @user, class: "btn btn-outline-primary" %></h3>
+    </div>
   </div>
 </div>
 
-<div class="container mt-3">
-    <!-- IMAGE -->
-    <%= image_tag "#{rand(1..6)}.jpg", class: "rounded float-left" %>
-    <!-- DETAILS -->
-    <ul>
-    <br>
-      <li>
-        <p class="card-text">
-          <% if @item.available == true %>
-            <%= "AVAILABLE" %>
-          <% end %>
-          <% if @item.available == false %>
-            <%= "UNAVAILABLE" %>
-          <% end %>
-        </p>
-      </li>
-      <li>
-        <p class="card-text">Price: €<%= @item.price %></p>
-      </li>
-      <li>
-        <p class="card-text">Category: <%= @item.category %></p>
-      </li>
-      <li>
-        <p class="card-text">Brand: <%= @item.brand %></p>
-      </li>
-    </ul>
+<div class="container">
+  <div class="row">
+      <div class="col-sm-6"> <!-- IMAGE -->
+        <%= image_tag "#{rand(1..6)}.jpg", class: "width: 100%; height: auto" %>
+      </div>
+      <div class="col-sm-6"> <!-- DESCRIPTION -->
+        <ul>
+          <li>
+            <p class="card-text">
+              <% if @item.available == true %>
+                <%= "AVAILABLE" %>
+              <% end %>
+              <% if @item.available == false %>
+                <%= "UNAVAILABLE" %>
+              <% end %>
+            </p>
+          </li>
+          <li>
+            <p class="card-text">Price: €<%= @item.price %></p>
+          </li>
+          <li>
+            <p class="card-text">Category: <%= @item.category %></p>
+          </li>
+          <li>
+            <p class="card-text">Brand: <%= @item.brand %></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- LINK TO EDIT LISTING-->
-    <div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"> <!-- LINK TO EDIT LISTING -->
       <% if policy(@item).edit? %>
         <%= link_to "Edit Listing", edit_item_path(@item), class: "ms-3 text-muted" %>
       <% end %>
     </div>
-
-    <div>
+    <div class="col-sm"> <!-- LINK TO DELETE LISTING -->
       <% if policy(@item).destroy? %>
-        <%= link_to "Remove", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+        <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
       <% end %>
     </div>
+  </div>
 </div>
 
 <!-- # LINK TO RENTAL FORM -->
-<div class="mx-auto" style="width: 200px;">
-  <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
+<div>
+  <%# link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
 </div>
 
 <!-- # LINK TO HOME -->
 <div class="mx-auto" style="width: 200px;">
   <%= link_to "Home Page", root_path, class: "btn btn-outline-primary" %>
 </div>
-
-<%# <i class="fa-solid fa-trash"></i>
-<%= link_to @project.external_link do %>
-  <%# <i class="fa fa-link"></i>
-<% end %>
