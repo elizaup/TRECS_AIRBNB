@@ -19,10 +19,6 @@
   <% end %>
 </div>
 
-<!-- # LINK USER PROFILE -->
-<!-- # LINK TO HOME -->
-<!-- # FORM FOR RENTAL -->
-
 <div class="container mt-2"> <%# Page title container %>
   <div class="row"> <%# Row 1 of 2 %>
     <div class="container"> <%# h1 to take up half page %>
@@ -77,16 +73,11 @@
 </div>
 
 <!-- # LINK TO RENTAL FORM -->
-<div class="mx-auto" style="width: 200px;">
+<div>
   <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
 </div>
 
 <!-- # LINK TO HOME -->
-<div class="mx-auto" style="width: 200px;">
+<div>
   <%= link_to "Home Page", root_path(@item), class: "btn btn-outline-primary" %>
 </div>
-
-<%# <i class="fa-solid fa-trash"></i>
-<%= link_to @project.external_link do %>
-  <%# <i class="fa fa-link"></i>
-<% end %>
