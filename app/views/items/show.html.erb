@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container mt-2">
 
   <div class="card"> <!-- PAGE TITLE & USER PROFILE BUTTON -->
     <div class="row">
-      <div class="col-sm-6"> <!-- PAGE TITLE -->
+      <div class="col-sm-6 justify-content-left"> <!-- PAGE TITLE -->
         <h2><%= @item.name %></h2>
       </div>
-      <div class="col-sm-6" > <!-- USER PROFILE LINK -->
+      <div class="col-sm-6 justify-content-right" > <!-- USER PROFILE LINK -->
         <h3><%= link_to "User Profile", @user, class: "btn btn-outline-primary" %></h3>
       </div>
     </div>
@@ -21,23 +21,23 @@
         <div class="col-sm-6"> <!-- DESCRIPTION -->
           <ul>
             <li>
-              <p class="card-text">
+              <h3 class="card-title">
                 <% if @item.available == true %>
                   <%= "AVAILABLE" %>
                 <% end %>
                 <% if @item.available == false %>
                   <%= "UNAVAILABLE" %>
                 <% end %>
-              </p>
+              </h3>
             </li>
             <li>
-              <p class="card-text">Price: €<%= @item.price %></p>
+              <h3 class="card-title">Price: €<%= @item.price %></h3>
             </li>
             <li>
-              <p class="card-text">Category: <%= @item.category %></p>
+              <h3 class="card-title">Category: <%= @item.category %></h3>
             </li>
             <li>
-              <p class="card-text">Brand: <%= @item.brand %></p>
+              <h3 class="card-title">Brand: <%= @item.brand %></h3>
             </li>
           </ul>
         </div>
