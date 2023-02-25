@@ -14,6 +14,7 @@ class RentalsController < ApplicationController
     @rental.user = current_user
     if @rental.save!
       redirect_to rental_path(@rental), notice: 'Rental request successful'
+      # need a rental confirmation page?
     else
       render 'request', status: :unprocessable_entity
     end
