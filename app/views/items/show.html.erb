@@ -70,9 +70,10 @@
       <% end %>
     </div>
 
-    <!-- LINK TO DELETE LISTING -->
     <div>
-      <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+      <% if policy(@item).destroy? %>
+        <%= link_to "Remove", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+      <% end %>
     </div>
 </div>
 
@@ -83,7 +84,7 @@
 
 <!-- # LINK TO HOME -->
 <div class="mx-auto" style="width: 200px;">
-  <%= link_to "Home Page", root_path(@item), class: "btn btn-outline-primary" %>
+  <%= link_to "Home Page", root_path, class: "btn btn-outline-primary" %>
 </div>
 
 <%# <i class="fa-solid fa-trash"></i>
