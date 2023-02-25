@@ -12,7 +12,9 @@
 <div class="container">
   <div class="row">
       <div class="col-sm-6"> <!-- IMAGE -->
+        <br>
         <%= image_tag "#{rand(1..6)}.jpg", class: "width: 100%; height: auto" %>
+        <br>
       </div>
       <div class="col-sm-6"> <!-- DESCRIPTION -->
         <ul>
@@ -57,11 +59,20 @@
 </div>
 
 <!-- # LINK TO RENTAL FORM -->
-<div>
-  <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <br>
+      <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
+      <br>
+    </div>
+  </div>
 </div>
 
 <!-- # LINK TO HOME -->
 <div class="mx-auto" style="width: 200px;">
-  <%= link_to "Home Page", root_path, class: "btn btn-outline-primary" %>
+  <br>
+  <%= link_to "Back to Home", root_path, class: "btn btn-outline-primary" %>
+  <br>
+  <br>
 </div>
