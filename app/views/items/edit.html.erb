@@ -1,1 +1,52 @@
 <h1>Edit <%= @item.name %></h1>
+
+<%= simple_form_for @item do |f| %>
+
+<div class="web_ui__Card__card">
+  <div data-testid="media-select" id="photos">
+    <div class="web_ui__Label__content">
+      <span>
+        <h3 class="web_ui__Text__text web_ui__Text__subtitle web_ui__Text__left">
+          <p>Add up to 10 photos.</p>
+        </h3>&nbsp;
+      </span>
+    </div>
+  <%= f.input :photos, class:"u-hidden", accept:"image/*", multiple:""%>
+    <div class="web_ui__Label__label web_ui__Label__wide web_ui__Label__leading">
+  </div>
+</div>
+
+<div class="mb-3">
+    <%= f.input :name, class:"form-control", placeholder:"eg.: Cozy White Jumper", label:"Item Title" %>
+</div>
+
+<div>
+    <div class="form-floating">
+     <%= f.input :category, collection: ["Jumper & Sweaters", "Dresses", "Skirts", "Tops & T-shirts", "Trousers", "Active wear", "Bags", "Shoes", "Accessories"], class:"form-select", label:"Category" %>
+    </div>
+</div>
+
+<div class="mb-3">
+      <%= f.input :brand, class:"form-control", placeholder:"eg.: Nike, Guess", label:"Brand" %>
+</div>
+
+<div class="row">
+  <div class="col">
+    <%= f.input :price, class:"form-control", placeholder:"€0.00", label:"Price" %>
+  </div>
+  <div class="col">
+    <div class="form-floating">
+      <%= f.input :condition, collection: ["New with tags", "New without tags", "Used - Very good", "Used - Good", "Used - Decent", "Used - Bad"], class:"form-select", label:"Conditions"%>
+    </div>
+  </div>
+</div>
+
+ <div class="col-12">
+    <div class="form-check">
+
+      <%= f.input :available, as: :boolean, checked_value: 'available', unchecked_value: 'not available', class: "form-check-input" %>
+    </div>
+  </div>
+
+  <%= f.button :submit, class:"btn btn-primary"%>
+<% end %>
