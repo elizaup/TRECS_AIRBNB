@@ -1,24 +1,3 @@
-<h1>Welcome!</h1>
-
-<div class="container">
-  <h2><%= @item.name %></h2>
-  <!-- IMAGES -->
-  <p><%= @item.price %></p>
-  <p><%= @item.category %></p>git
-  <p><%= @item.brand %></p>
-  <p><%= @item.available %></p>
-</div>
-
-<div class="rental inquiry">
-  <h2> Submit a Rental Inquiry <h2>
-  <%= simple_form_for [@item, @rental] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%# f.input :price %>
-    <%= f.submit class: "btn btn-primary" %>
-  <% end %>
-</div>
-
 <div class="container mt-2"> <%# Page title container %>
   <div class="row"> <%# Row 1 of 2 %>
     <div class="container"> <%# h1 to take up half page %>
@@ -59,7 +38,7 @@
       </li>
     </ul>
 
-    <!-- LINK TO EDIT LISTING-->
+    <!-- LINK TO EDIT LISTING -->
     <div>
       <% if policy(@item).edit? %>
         <%= link_to "Edit Listing", edit_item_path(@item), class: "ms-3 text-muted" %>
@@ -68,16 +47,18 @@
 
     <!-- LINK TO DELETE LISTING -->
     <div>
-      <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+      <% if policy(@item).destroy? %>
+        <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+      <% end %>
     </div>
 </div>
 
 <!-- # LINK TO RENTAL FORM -->
 <div>
-  <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
+  <%# link_to "Rental Request Form", new_item_rentals_path(@item), class: "btn btn-outline-primary" %>
 </div>
 
 <!-- # LINK TO HOME -->
-<div>
+<div class="mx-auto" style="width: 200px;">
   <%= link_to "Home Page", root_path(@item), class: "btn btn-outline-primary" %>
 </div>
