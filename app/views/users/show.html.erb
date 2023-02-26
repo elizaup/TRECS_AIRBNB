@@ -1,9 +1,14 @@
-<h1><strong><%= @user.first_name.capitalize %></strong> </h1>
-<%= image_tag "https://kitt.lewagon.com/placeholder/users/sarahlafer", class: "avatar-bordered", alt: "avatar-bordered" %>
-<p>@<%= @user.username.downcase %></p>
-<p> ⭐️⭐️⭐️⭐️⭐️ (15) </p>
-<p> <strong> 100 </strong> Followers | <strong> 80 </strong> Following</p>
-
+<div class="d-flex" >
+  <div class="flex-shrink-0">
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/sarahlafer", class: "avatar-bordered", alt: "avatar-bordered" %>
+  </div>
+  <div class="flex-grow-1 ms-3">
+    <h1><strong><%= @user.first_name.capitalize %></strong> </h1>
+    <p>@<%= @user.username.downcase %></p>
+    <p> ⭐️⭐️⭐️⭐️⭐️ (15) </p>
+    <p> <strong> 100 </strong> Followers | <strong> 80 </strong> Following</p>
+  </div>
+</div>
 
 <%# If you are the renter "seller" && the status of your rental items is PENDING i.e rental.confirmed = false
 iterate over items that require your confirmation here
@@ -21,8 +26,7 @@ then create a button / link allowing you to update status of rental.confirmed= t
     </div>
 
   <h2><strong>Awaiting confirmation</strong></h2>
-    <% @pending.each do |p|  %>
-     <%= p.start_date %>
+    <% @pending.each do |p| %>
       <%= p.start_date %>
       <%= p.end_date %>
       <%= link_to "Approve", approve_rental_path(p), class: "btn btn-outline-primary my-2 my-sm-0 ms-md-2" %>
@@ -41,6 +45,38 @@ then create a button / link allowing you to update status of rental.confirmed= t
   <h2><strong> My Rentals </strong></h2>
   <%= link_to "Find them here 👗", rentals_path %>
 <% end %>
+
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">Approve</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pending.each do |p| %>
+      <tr>
+        <th scope="row">1</th>
+        <td>Shirt</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td><%= p.start_date%></td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td><%= p.end_date%></td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td> <%= link_to "Approve", approve_rental_path(p) %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
 <%# If you are the renter "seller" && the status of your rental items is CONFIRMED i.e rental.confirmed = true
