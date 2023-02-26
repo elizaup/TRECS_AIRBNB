@@ -5,6 +5,9 @@ class RentalsController < ApplicationController
     @user = current_user
     @rentals = Rental.where(user: @user)
     @rentals = policy_scope(Rental)
+
+    @pending = @rentals.select { |rental| rental.confirmed == false }
+    @confirmed = @rentals.select { |rental| rental.confirmed }
   end
 
   def new
@@ -19,7 +22,7 @@ class RentalsController < ApplicationController
     @rental.item = Item.find(params[:item_id])
     authorize @rental
     if @rental.save!
-      redirect_to item_rentals_path, notice: 'Rental request successful'
+      redirect_to rentals_path, notice: 'Rental request successful'
     else
       redirect_to new_item_rental_path(@item), status: :unprocessable_entity
     end
@@ -34,6 +37,12 @@ class RentalsController < ApplicationController
       redirect_to user_path(@rental.user_id), status: :unprocessable_entity
     end
   end
+
+  def rental
+    @rental.destroy
+    redirect_to rentals_path, status: :see_other
+    authorize(@rental)
+   end
 
   private
 

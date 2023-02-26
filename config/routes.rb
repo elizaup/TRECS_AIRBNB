@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   # root "articles#index"\
 
   resources :items, only: [:new, :create, :show, :edit, :update, :destroy] do
-    resources :rentals, only: [:new, :create, :index]
+    resources :rentals, only: [:new, :create]
   end
 
   resources :users, only: [:show]
+
+  resources :rentals, only: [:index, :destroy]
 
   get "rentals/:id/approve", to: "rentals#approve", as: :approve_rental
 

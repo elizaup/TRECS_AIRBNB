@@ -1,1 +1,11 @@
-<h1> Rental Status </h1>
+<h1> My rentals 👗 </h1>
+
+<ul>
+  <% @rentals.each do |rental|%>
+    <li> From: <%= rental.start_date %> To: <%= rental.end_date %>
+      <%= link_to "Cancel",
+      rentals_path,
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    </li>
+  <% end %>
+</ul>
