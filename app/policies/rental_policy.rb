@@ -6,10 +6,6 @@ class RentalPolicy < ApplicationPolicy
     end
   end
 
-  # def show?
-  #  return true
-  # end
-
   def new?
     return create?
   end
@@ -21,6 +17,11 @@ class RentalPolicy < ApplicationPolicy
   def destroy?
     # only the person that created the listing
     return record.user == user
+  end
+
+  def approve?
+    return true
+    # record.item.user == current_user
   end
 
   # def edit?

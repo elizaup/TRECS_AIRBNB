@@ -11,6 +11,12 @@ Rails.application.routes.draw do
     resources :rentals, only: [:new, :create]
   end
 
+  resources :users, only: [:show]
+
+  resources :rentals, only: [:index, :destroy]
+
+  get "rentals/:id/approve", to: "rentals#approve", as: :approve_rental
+
   # New / Items
   # get "items/new", to: "items#new", as: :new_item
   # post "items", to: "items#create"
