@@ -1,67 +1,79 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm"> <!-- PAGE (ITEM) TITLE -->
-      <h1><%= @item.name %></h1>
-    </div>
-    <div class="col-sm" > <!-- USER PROFILE LINK -->
-      <h3><%= link_to "User Profile", @user, class: "btn btn-outline-primary" %></h3>
-    </div>
-  </div>
-</div>
+<div class="container mt-2">
 
-<div class="container">
-  <div class="row">
-      <div class="col-sm-6"> <!-- IMAGE -->
-        <%= image_tag "#{rand(1..6)}.jpg", class: "width: 100%; height: auto" %>
+  <div class="card"> <!-- PAGE TITLE & USER PROFILE BUTTON -->
+    <div class="row">
+      <div class="col-sm-6 justify-content-left"> <!-- PAGE TITLE -->
+        <h2><%= @item.name %></h2>
       </div>
-      <div class="col-sm-6"> <!-- DESCRIPTION -->
-        <ul>
-          <li>
-            <p class="card-text">
-              <% if @item.available == true %>
-                <%= "AVAILABLE" %>
-              <% end %>
-              <% if @item.available == false %>
-                <%= "UNAVAILABLE" %>
-              <% end %>
-            </p>
-          </li>
-          <li>
-            <p class="card-text">Price: €<%= @item.price %></p>
-          </li>
-          <li>
-            <p class="card-text">Category: <%= @item.category %></p>
-          </li>
-          <li>
-            <p class="card-text">Brand: <%= @item.brand %></p>
-          </li>
-        </ul>
+      <div class="col-sm-6 justify-content-right" > <!-- USER PROFILE LINK -->
+        <h3><%= link_to "User Profile", @user, class: "btn btn-outline-primary" %></h3>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm"> <!-- LINK TO EDIT LISTING -->
-      <% if policy(@item).edit? %>
-        <%= link_to "Edit Listing", edit_item_path(@item), class: "ms-3 text-muted" %>
-      <% end %>
-    </div>
-    <div class="col-sm"> <!-- LINK TO DELETE LISTING -->
-      <% if policy(@item).destroy? %>
-        <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
-      <% end %>
+  <div class="card"> <!-- IMAGE & DESCRIPTION -->
+    <div class="row">
+        <div class="col-sm-6"> <!-- IMAGE -->
+          <br>
+          <%= image_tag "#{rand(1..6)}.jpg" %>
+          <br>
+        </div>
+        <div class="col-sm-6"> <!-- DESCRIPTION -->
+          <ul>
+            <li>
+              <h3 class="card-title">
+                <% if @item.available == true %>
+                  <%= "AVAILABLE" %>
+                <% end %>
+                <% if @item.available == false %>
+                  <%= "UNAVAILABLE" %>
+                <% end %>
+              </h3>
+            </li>
+            <li>
+              <h3 class="card-title">Price: €<%= @item.price %></h3>
+            </li>
+            <li>
+              <h3 class="card-title">Category: <%= @item.category %></h3>
+            </li>
+            <li>
+              <h3 class="card-title">Brand: <%= @item.brand %></h3>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- # LINK TO RENTAL FORM -->
-<div>
-  <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
-</div>
+  <div class="card"> <!-- EDIT & DELETE or RENTAL FORM -->
+    <div class="row"> <!-- EDIT & DELETE -->
+      <div class="col-sm-6"> <!-- EDIT -->
+        <% if policy(@item).edit? %>
+          <%= link_to "Edit Listing", edit_item_path(@item), class: "ms-3 text-muted" %>
+        <% end %>
+      </div>
+      <div class="col-sm-6"> <!-- DELETE -->
+        <% if policy(@item).destroy? %>
+          <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row"> <!-- RENTAL FORM -->
+      <div class="col-sm">
+        <br>
+        <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
+        <br>
+      </div>
+    </div>
+  </div>
 
-<!-- # LINK TO HOME -->
-<div class="mx-auto" style="width: 200px;">
-  <%= link_to "Home Page", root_path, class: "btn btn-outline-primary" %>
+  <div class="card"> <!-- HOME BUTTON -->
+    <div class="mx-auto" style="width: 200px;">
+      <br>
+      <%= link_to "Back to Home", root_path, class: "btn btn-outline-primary" %>
+      <br>
+      <br>
+    </div>
+  </div>
+
 </div>
