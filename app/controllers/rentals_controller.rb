@@ -1,5 +1,5 @@
 class RentalsController < ApplicationController
-  before_action :find_rental, only: [:approve, :delete]
+  before_action :find_rental, only: [:approve, :destroy]
 
   def index
     @user = current_user
