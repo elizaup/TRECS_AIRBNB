@@ -1,6 +1,9 @@
 class RentalsController < ApplicationController
-  before_action :find_rental, only: [ :confirmation, :request, :show ]
-  before_action :find_item, only: [ :confirmation, :request ]
+  before_action :find_rental, only: [:request, :show, :approve]
+  # before_action :find_item, only: [ :confirmation, :request ]
+
+  def show
+  end
 
   def new
     @rental = Rental.new
@@ -10,21 +13,31 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    @rental.item = Item.find(params[:item_id])
     @rental.user = current_user
+    @rental.item = Item.find(params[:item_id])
+    authorize @rental
     if @rental.save!
-      redirect_to rental_path(@rental), notice: 'Rental request successful'
-      # need a rental confirmation page?
+      redirect_to item_rentals_path(@rental.item), notice: 'Rental request successful'
     else
-      render 'request', status: :unprocessable_entity
+      redirect_to new_item_rental_path(@item), status: :unprocessable_entity
     end
   end
 
-  def confirmation
-    if @rental.update(confirmed)
-      redirect_to rental_path(@rental), notice: 'Rental confirmed'
+  # def confirmation
+  #   if @rental.update(confirmed)
+  #     redirect_to rental_path(@rental), notice: 'Rental confirmed'
+  #   else
+  #     render 'confirmation', status: :unprocessable_entity
+  #   end
+  # end
+
+  def approve
+    @rental.confirmed = true
+    authorize @rental
+    if @rental.save
+      redirect_to user_path(@rental.user_id), notice: 'Rental approved'
     else
-     render 'confirmation', status: :unprocessable_entity
+      redirect_to user_path(@rental.user_id), status: :unprocessable_entity
     end
   end
 

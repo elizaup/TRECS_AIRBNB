@@ -1,0 +1,59 @@
+<h1><strong><%= @user.first_name.capitalize %></strong> </h1>
+<%= image_tag "https://kitt.lewagon.com/placeholder/users/sarahlafer", class: "avatar-bordered", alt: "avatar-bordered" %>
+<p>@<%= @user.username.downcase %></p>
+<p> ⭐️⭐️⭐️⭐️⭐️ (15) </p>
+<p> <strong> 100 </strong> Followers | <strong> 80 </strong> Following</p>
+
+<h2><strong>Renting</strong></h2>
+
+<div class="cards">
+  <% @user.items.each do |item| %>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media-photos.depop.com/b1/5779679/1437787993_0328f0ab999143f69e88f2f5015f39c5/P0.jpg)">
+    <%= item.name %> <%# would be good to have a link here to each item and also for images to not just be the link above %>
+  </div>
+<% end %>
+</div>
+
+<%# If you are the renter "seller" && the status of your rental items is PENDING i.e rental.confirmed = false
+iterate over items that require your confirmation here
+then create a button / link allowing you to update status of rental.confirmed= true
+%>
+
+
+
+
+<h2><strong>Awaiting confirmation</strong></h2>
+
+<% @pending.each do |p|  %>
+  <%= p.start_date %>
+  <%= p.end_date %>
+  <%= link_to "Approve", approve_rental_path(p), class: "btn btn-outline-primary my-2 my-sm-0 ms-md-2" %>
+<% end %>
+
+
+<%# If you are the renter "seller" && the status of your rental items is CONFIRMED i.e rental.confirmed = true
+iterate over the items and display them here
+%>
+<h2><strong>Confirmed </strong></h2>
+
+<% @confirmed.each do |p|  %>
+  <%= p.start_date %>
+  <%= p.end_date %>
+<% end %>
+
+<%# If you are the rentee "buyer" show the link to the booking/rental status page => view/rentals/confirmation.html.erb
+%>
+
+
+<%# create a card with a button to accept confirmation, button -> update method from pending or accepted
+changing value of column
+don't do anything in the controller
+update to a column value
+@buyers.rentals.status = pending
+array / iterate
+%>
+
+
+<%#
+@buyers.rentals.status = pending
+%>
