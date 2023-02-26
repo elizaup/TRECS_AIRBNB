@@ -22,6 +22,7 @@ then create a button / link allowing you to update status of rental.confirmed= t
 
   <h2><strong>Awaiting confirmation</strong></h2>
     <% @pending.each do |p|  %>
+     <%= p.start_date %>
       <%= p.start_date %>
       <%= p.end_date %>
       <%= link_to "Approve", approve_rental_path(p), class: "btn btn-outline-primary my-2 my-sm-0 ms-md-2" %>
