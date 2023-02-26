@@ -1,8 +1,10 @@
 class RentalsController < ApplicationController
-  before_action :find_rental, only: [:request, :show, :approve]
-  # before_action :find_item, only: [ :confirmation, :request ]
+  before_action :find_rental, only: [:approve]
 
-  def show
+  def index
+    @user = current_user
+    @rentals = Rental.where(user: @user)
+    @rentals = policy_scope(Rental)
   end
 
   def new
@@ -17,19 +19,11 @@ class RentalsController < ApplicationController
     @rental.item = Item.find(params[:item_id])
     authorize @rental
     if @rental.save!
-      redirect_to item_rentals_path(@rental.item), notice: 'Rental request successful'
+      redirect_to item_rentals_path, notice: 'Rental request successful'
     else
       redirect_to new_item_rental_path(@item), status: :unprocessable_entity
     end
   end
-
-  # def confirmation
-  #   if @rental.update(confirmed)
-  #     redirect_to rental_path(@rental), notice: 'Rental confirmed'
-  #   else
-  #     render 'confirmation', status: :unprocessable_entity
-  #   end
-  # end
 
   def approve
     @rental.confirmed = true

@@ -6,10 +6,6 @@ class RentalPolicy < ApplicationPolicy
     end
   end
 
-  def show?
-    return true
-  end
-
   def new?
     return create?
   end
