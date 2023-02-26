@@ -1,5 +1,5 @@
 class RentalsController < ApplicationController
-  before_action :find_rental, only: [:approve]
+  before_action :find_rental, only: [:approve, :delete]
 
   def index
     @user = current_user
@@ -38,17 +38,13 @@ class RentalsController < ApplicationController
     end
   end
 
-  def rental
+  def destroy
+    authorize @rental
     @rental.destroy
     redirect_to rentals_path, status: :see_other
-    authorize(@rental)
-   end
+  end
 
   private
-
-  def find_item
-    @item = Item.find(params[:item_id])
-  end
 
   def find_rental
     @rental = Rental.find(params[:id])

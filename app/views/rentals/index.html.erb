@@ -4,7 +4,7 @@
   <% @rentals.each do |rental|%>
     <li> From: <%= rental.start_date %> To: <%= rental.end_date %>
       <%= link_to "Cancel",
-      rentals_path,
+      rental_path(@rental),
       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
     </li>
   <% end %>
