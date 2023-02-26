@@ -8,6 +8,9 @@
 
 require 'faker'
 
+puts 'Cleaning Items'
+Item.destroy_all
+
 # 20 fake users:
 puts 'Creating 20 fake users...'
 20.times do
@@ -24,7 +27,7 @@ puts 'Creating 20 fake users...'
       name: Faker::Commerce.product_name,
       price: Faker::Commerce.price,
       condition: Faker::Commerce.material,
-      category: Faker::Commerce.department,
+      category: ["Jumper & Sweaters", "Dresses", "Skirts", "Tops & T-shirts", "Trousers", "Active wear", "Bags", "Shoes", "Accessories"].sample,
       brand: Faker::Commerce.brand,
       available: Faker::Boolean.boolean,
       user: user
