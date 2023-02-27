@@ -1,4 +1,4 @@
-<div class="d-flex" >
+<div class="d-flex container" >
   <div class="flex-shrink-0">
     <%= image_tag "https://kitt.lewagon.com/placeholder/users/sarahlafer", class: "avatar-bordered", alt: "avatar-bordered" %>
   </div>
@@ -10,9 +10,9 @@
   </div>
 </div>
 
-<div>
+<div class="container my-3">
   <% if @user.items.count > 0 %>
-    <h2><strong>Renting</strong></h2>
+    <h3><strong>Renting</strong></h3>
       <div class="cards">
         <% @user.items.each do |item| %>
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media-photos.depop.com/b1/5779679/1437787993_0328f0ab999143f69e88f2f5015f39c5/P0.jpg)">
@@ -21,10 +21,10 @@
         <% end %>
       </div>
   <% end %>
-      <%# div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media-photos.depop.com/b1/5779679/1437787993_0328f0ab999143f69e88f2f5015f39c5/P0.jpg)">
-      <%= image_tag "#{rand(1..6)}.jpg", class: "card-img-top" %>
+</div>
 
-    <h2><strong>Confirmation</strong></h2>
+<div class="container my-5">
+    <h3><strong>Confirmation</strong></h3>
       <table class="table table-borderless">
         <thead>
           <tr>
@@ -51,11 +51,23 @@
           <% end %>
         </tbody>
       </table>
-
-
-  <% if @user.rentals.count > 0 %>
-    <h2><strong> All Items Rented </strong></h2>
-    <%= link_to "Find them here 👗", rentals_path %>
-  <% end %>
-
 </div>
+
+
+<div class ="container my-5">
+  <div class="d-flex justify-content-center">
+    <% if @user.rentals.count > 0 %>
+      <%= link_to "Upcoming Rentals", rentals_path, class: "btn btn-outline-primary"%>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<%# div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media-photos.depop.com/b1/5779679/1437787993_0328f0ab999143f69e88f2f5015f39c5/P0.jpg)">
+<%= image_tag "#{rand(1..6)}.jpg", class: "card-img-top" %>
