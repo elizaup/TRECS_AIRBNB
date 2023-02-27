@@ -10,91 +10,52 @@
   </div>
 </div>
 
-<%# If you are the renter "seller" && the status of your rental items is PENDING i.e rental.confirmed = false
-iterate over items that require your confirmation here
-then create a button / link allowing you to update status of rental.confirmed= true
-%>
-
-<% if @user.items.count > 0 %>
-  <h2><strong>Renting</strong></h2>
-    <div class="cards">
-      <% @user.items.each do |item| %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media-photos.depop.com/b1/5779679/1437787993_0328f0ab999143f69e88f2f5015f39c5/P0.jpg)">
-        <%= item.name %> <%# would be good to have a link here to each item and also for images to not just be the link above %>
+<div>
+  <% if @user.items.count > 0 %>
+    <h2><strong>Renting</strong></h2>
+      <div class="cards">
+        <% @user.items.each do |item| %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media-photos.depop.com/b1/5779679/1437787993_0328f0ab999143f69e88f2f5015f39c5/P0.jpg)">
+          <%= item.name %> <%# would be good to have a link here to each item and also for images to not just be the link above %>
+        </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
+  <% end %>
+      <%# div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media-photos.depop.com/b1/5779679/1437787993_0328f0ab999143f69e88f2f5015f39c5/P0.jpg)">
+      <%= image_tag "#{rand(1..6)}.jpg", class: "card-img-top" %>
 
-  <h2><strong>Awaiting confirmation</strong></h2>
-    <% @pending.each do |p| %>
-      <%= p.start_date %>
-      <%= p.end_date %>
-      <%= link_to "Approve", approve_rental_path(p), class: "btn btn-outline-primary my-2 my-sm-0 ms-md-2" %>
-    <% end %>
-
-  <h2><strong>Confirmed </strong></h2>
-    <% @confirmed.each do |p|  %>
-      <%= p.start_date %>
-      <%= p.end_date %>
-    <% end %>
-<% else %>
-<p> Start discovering the joy of renting! 🤑 </p>
-<% end %>
-
-<% if @user.rentals.count > 0 %>
-  <h2><strong> My Rentals </strong></h2>
-  <%= link_to "Find them here 👗", rentals_path %>
-<% end %>
-
-<table class="table table-borderless">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Item</th>
-      <th scope="col">Start Date</th>
-      <th scope="col">End Date</th>
-      <th scope="col">Approve</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pending.each do |p| %>
-      <tr>
-        <th scope="row">1</th>
-        <td>Shirt</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td><%= p.start_date%></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td><%= p.end_date%></td>
-      </tr>
-      <tr>
-        <th scope="row">4</th>
-        <td> <%= link_to "Approve", approve_rental_path(p) %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <h2><strong>Confirmation</strong></h2>
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Item name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Confirmed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @rentals.each do |rental| %>
+            <tr>
+              <td><%= rental.item.name %></td>
+              <td><%= rental.start_date %></td>
+              <td><%= rental.end_date %></td>
+              <td>
+                <% if rental.confirmed == false  %>
+                  <%= link_to "Approve", approve_rental_path(rental) %>
+                <% else %>
+                  <%= "Confirmed" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
 
-<%# If you are the renter "seller" && the status of your rental items is CONFIRMED i.e rental.confirmed = true
-iterate over the items and display them here
-%>
-<%# If you are the rentee "buyer" show the link to the booking/rental status page => view/rentals/confirmation.html.erb
-%>
+  <% if @user.rentals.count > 0 %>
+    <h2><strong> All Items Rented </strong></h2>
+    <%= link_to "Find them here 👗", rentals_path %>
+  <% end %>
 
-
-<%# create a card with a button to accept confirmation, button -> update method from pending or accepted
-changing value of column
-don't do anything in the controller
-update to a column value
-@buyers.rentals.status = pending
-array / iterate
-%>
-
-
-<%#
-@buyers.rentals.status = pending
-%>
+</div>

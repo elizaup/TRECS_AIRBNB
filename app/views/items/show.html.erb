@@ -15,7 +15,10 @@
     <div class="row">
         <div class="col-sm-6"> <!-- IMAGE -->
           <br>
-          <%= image_tag "#{rand(1..6)}.jpg" %>
+
+          <% @item.photos.each do |photo| %>
+            <%= cl_image_tag photo.key %>
+          <% end %>
           <br>
         </div>
         <div class="col-sm-6"> <!-- DESCRIPTION -->
@@ -77,3 +80,5 @@
   </div>
 
 </div>
+
+<%# if image_tag  @item.photos.attached ? @item.photos : "#{rand(1..6)}.jpg" %>
