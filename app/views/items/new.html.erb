@@ -11,7 +11,8 @@
         </h3>&nbsp;
       </span>
     </div>
-  <%= f.input :photos, class:"u-hidden", accept:"image/*", multiple:""%>
+  <%# f.input :photos,  class:"u-hidden", accept:"image/*", multiple:""%>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <div class="web_ui__Label__label web_ui__Label__wide web_ui__Label__leading">
   </div>
 </div>

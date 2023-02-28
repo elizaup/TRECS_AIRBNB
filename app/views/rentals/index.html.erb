@@ -1,11 +1,22 @@
-<h1> My rentals 👗 </h1>
+<h2> <strong> Upcoming rentals </strong> 🧢 </h2>
 
-<ul>
-  <% @rentals.each do |rental|%>
-    <li> From: <%= rental.start_date %> To: <%= rental.end_date %>
-      <%= link_to "Cancel",
-      rental_path(rental),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    </li>
-  <% end %>
-</ul>
+<div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col"> ❌ </th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @rentals.each do |rental| %>
+        <tr>
+          <td><%= rental.start_date %></td>
+          <td><%= rental.end_date %></td>
+          <td> <%= link_to "Cancel", rental_path(rental), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
