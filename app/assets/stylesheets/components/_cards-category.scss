@@ -11,3 +11,23 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+
+.card-index {
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px lightgray;
+
+  ul {
+    list-style: none;
+    margin: 0 0 8px 0px;
+    padding: 0;
+  }
+
+  ul li {
+    color: gray;
+    display: inline;
+  }
+
+  img {
+    padding: 16px;
+  }
+}
