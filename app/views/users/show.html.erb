@@ -13,9 +13,9 @@
 <div class="container my-3">
   <% if @user.items.count > 0 %>
     <h3><strong>Renting</strong></h3>
-      <div class="cards">
+      <div class="user-page-cards">
         <% @user.items.each do |item| %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://media-photos.depop.com/b1/5779679/1437787993_0328f0ab999143f69e88f2f5015f39c5/P0.jpg)">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_url "#{rand(1..6)}.jpg" %>)">
           <%= item.name %> <%# would be good to have a link here to each item and also for images to not just be the link above %>
         </div>
         <% end %>

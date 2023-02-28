@@ -9,16 +9,14 @@
         </div>
         <div class="col-sm-6"> <!-- Profile Link -->
           <br>
-          <%= link_to "User Profile", user_path, class: "btn btn-outline-primary align-content-end" %>
+          <%# link_to "User Profile", user_path, class: "btn btn-outline-primary align-content-end" %>
         </div>
       </div>
     </div>
      <div class="container mb-2"> <!-- Image, Description, & Buttons -->
       <div class="row">
           <div class="col-sm-6"> <!-- Image -->
-            <% @item.photos.each do |photo| %>
-              <%= cl_image_tag photo.key %>
-            <% end %>
+            <%= image_tag "#{rand(1..6)}.jpg", class: "card-img-top" %>
           </div>
           <div class="col-sm-6"> <!-- Description & Buttons -->
             <div class="mb-2">
@@ -66,7 +64,7 @@
     <div class="container mb-2 justify-content-center auto"> <!-- HOME BUTTON -->
       <div class="mx-auto" style="width: 200px;">
         <br>
-        <%= link_to "Back to Home", root_path, class: "btn btn-outline-primary" %>
+        <%# link_to "Back to Home", root_path, class: "btn btn-outline-primary" %>
         <br>
      </div>
 
