@@ -1,84 +1,76 @@
-<div class="container mt-2">
+<div class= "container mb-2">
 
-  <div class="card"> <!-- PAGE TITLE & USER PROFILE BUTTON -->
-    <div class="row">
-      <div class="col-sm-6 justify-content-left"> <!-- PAGE TITLE -->
-        <h2><%= @item.name %></h2>
-      </div>
-      <div class="col-sm-6 justify-content-right" > <!-- USER PROFILE LINK -->
-        <h3><%= link_to "User Profile", user_path, class: "btn btn-outline-primary" %></h3>
-      </div>
-    </div>
-  </div>
-
-  <div class="card"> <!-- IMAGE & DESCRIPTION -->
-    <div class="row">
-        <div class="col-sm-6"> <!-- IMAGE -->
+  <div class="card border-dark mb-2">
+    <div class="container mb-2"> <!-- Title & Profile Link -->
+      <div class="row">
+        <div class="col-sm-6"> <!-- Title -->
           <br>
-
-          <% @item.photos.each do |photo| %>
-            <%= cl_image_tag photo.key %>
-          <% end %>
-          <br>
+          <h2><%= @item.name %></h2>
         </div>
-        <div class="col-sm-6"> <!-- DESCRIPTION -->
-          <ul>
-            <li>
-              <h3 class="card-title">
-                <% if @item.available == true %>
-                  <%= "AVAILABLE" %>
-                <% end %>
-                <% if @item.available == false %>
-                  <%= "UNAVAILABLE" %>
-                <% end %>
-              </h3>
-            </li>
-            <li>
-              <h3 class="card-title">Price: €<%= @item.price %></h3>
-            </li>
-            <li>
-              <h3 class="card-title">Category: <%= @item.category %></h3>
-            </li>
-            <li>
-              <h3 class="card-title">Brand: <%= @item.brand %></h3>
-            </li>
-          </ul>
+        <div class="col-sm-6"> <!-- Profile Link -->
+          <br>
+          <%= link_to "User Profile", user_path, class: "btn btn-outline-primary align-content-end" %>
         </div>
       </div>
     </div>
-  </div>
+     <div class="container mb-2"> <!-- Image, Description, & Buttons -->
+      <div class="row">
+          <div class="col-sm-6"> <!-- Image -->
+            <% @item.photos.each do |photo| %>
+              <%= cl_image_tag photo.key %>
+            <% end %>
+          </div>
+          <div class="col-sm-6"> <!-- Description & Buttons -->
+            <div class="mb-2">
+              <br>
+              <ul>
+                <li>
+                  <h3 class="card-title">
+                    <% if @item.available == true %>
+                      <%= "Available for rent" %>
+                    <% end %>
+                    <% if @item.available == false %>
+                      <%= "Unavailable for rent" %>
+                    <% end %>
+                  </h3>
+                </li>
+                <li>
+                  <h3 class="card-title">Price: €<%= @item.price %></h3>
+                </li>
+                <li>
+                  <h3 class="card-title">Category: <%= @item.category %></h3>
+                </li>
+                <li>
+                  <h3 class="card-title">Brand: <%= @item.brand %></h3>
+                </li>
+              </ul>
+              <br>
+              <!-- EDIT FORM -->
+              <% if policy(@item).edit? %>
+                <%= link_to "Edit Listing", edit_item_path(@item), class: "ms-3 text-muted mx-auto" %>
+              <% end %>
+              <!-- DELETE FORM -->
+              <% if policy(@item).destroy? %>
+                <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted mx-auto" %>
+              <% end %>
+              <!-- RENTAL FORM -->
+              <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div class="card"> <!-- EDIT & DELETE or RENTAL FORM -->
-    <div class="row"> <!-- EDIT & DELETE -->
-      <div class="col-sm-6"> <!-- EDIT -->
-        <% if policy(@item).edit? %>
-          <%= link_to "Edit Listing", edit_item_path(@item), class: "ms-3 text-muted" %>
-        <% end %>
-      </div>
-      <div class="col-sm-6"> <!-- DELETE -->
-        <% if policy(@item).destroy? %>
-          <%= link_to "Remove Listing", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "ms-3 text-muted" %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row"> <!-- RENTAL FORM -->
-      <div class="col-sm">
-        <br>
-        <%= link_to "Rental Request Form", new_item_rental_path(@item), class: "btn btn-outline-primary" %>
-        <br>
-      </div>
-    </div>
-  </div>
 
-  <div class="card"> <!-- HOME BUTTON -->
-    <div class="mx-auto" style="width: 200px;">
-      <br>
-      <%= link_to "Back to Home", root_path, class: "btn btn-outline-primary" %>
-      <br>
-      <br>
-    </div>
-  </div>
+    <div class="container mb-2 justify-content-center auto"> <!-- HOME BUTTON -->
+      <div class="mx-auto" style="width: 200px;">
+        <br>
+        <%= link_to "Back to Home", root_path, class: "btn btn-outline-primary" %>
+        <br>
+     </div>
 
 </div>
+
 
 <%# if image_tag  @item.photos.attached ? @item.photos : "#{rand(1..6)}.jpg" %>
