@@ -23,11 +23,13 @@ puts 'Creating 20 fake users...'
     password: "123456"
   )
   3.times do
+    condition = ["New with tags", "New without tags", "Used - Very good", "Used - Good", "Used - Decent", "Used - Bad"].sample
+    category = ["Jumper & Sweaters", "Dresses", "Skirts", "Tops & T-shirts", "Trousers", "Active wear", "Bags", "Shoes", "Accessories"].sample
     Item.create!(
-      name: Faker::Commerce.product_name,
       price: Faker::Commerce.price,
-      condition: Faker::Commerce.material,
-      category: ["Jumper & Sweaters", "Dresses", "Skirts", "Tops & T-shirts", "Trousers", "Active wear", "Bags", "Shoes", "Accessories"].sample,
+      condition: condition,
+      category: category,
+      name: Faker::Adjective.positive.capitalize + " " + category,
       brand: Faker::Commerce.brand,
       available: Faker::Boolean.boolean,
       user: user
